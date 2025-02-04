@@ -20,8 +20,12 @@ if(storedToken !== undefined && storedToken !== null) {
 } else if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    const accessToken = await getAccessToken(clientId, code);
-    checkTokenValidity(accessToken);
+    (async () => {
+        const accessToken = await getAccessToken(clientId, code);
+        checkTokenValidity(accessToken);
+      })();
+    //const accessToken = await getAccessToken(clientId, code);
+    //checkTokenValidity(accessToken);
 }
 
 setInterval(() => {
